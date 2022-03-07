@@ -48,7 +48,7 @@ public class Solution {
         }
 
         long t1 = System.currentTimeMillis();
-        System.out.println("Timpul necesitat de algoritmul Greedy este: " + (t1 - t0));
+        System.out.println("The time to solve the problem with Greedy algorithm: " + (t1 - t0));
     }
 
     private boolean checkAndAdd(Event event, Room room) {
