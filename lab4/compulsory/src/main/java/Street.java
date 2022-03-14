@@ -1,7 +1,7 @@
 import java.util.Arrays;
 
 public class Street {
-    private String name;
+    private final String name;
     private double length;
     Intersection[] intersection = new Intersection[2];
 
@@ -10,10 +10,6 @@ public class Street {
         this.intersection[1] = i2;
         this.name = name;
         this.length = length;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public void setLength(double length) {
