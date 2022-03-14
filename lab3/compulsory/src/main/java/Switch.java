@@ -21,4 +21,13 @@ public class Switch extends Node {
     public String getLocation() {
         return super.location;
     }
+
+    @Override
+    public String toString() {
+        return "Switch\t{" +
+                "name='" + name + '\'' +
+                ", location='" + location + '\'' +
+                ", hardwareAddress='" + hardwareAddress + '\'' +
+                "}\n";
+    }
 }

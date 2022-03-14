@@ -1,4 +1,6 @@
 public class Router extends Node {
+    private final String IP;
+
     public Router(String name, String location, String IP, String hardwareAddress) {
         this.name = name;
         this.location = location;
@@ -22,6 +24,16 @@ public class Router extends Node {
     }
 
     public String getIP() {
-        return super.IP;
+        return IP;
+    }
+
+    @Override
+    public String toString() {
+        return "Router\t{" +
+                "name='" + name + '\'' +
+                ", location='" + location + '\'' +
+                ", hardwareAddress='" + hardwareAddress + '\'' +
+                ", IP='" + IP + '\'' +
+                "}\n";
     }
 }

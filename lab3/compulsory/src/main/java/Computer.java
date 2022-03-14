@@ -1,4 +1,7 @@
-public class Computer extends Node {
+public class Computer extends Node implements Storage, Identifiable{
+    private final String IP;
+    private final int storage;
+
     public Computer(String name, String location, String hardwareAddress, String IP, int storage) {
         this.name = name;
         this.location = location;
@@ -28,5 +31,17 @@ public class Computer extends Node {
 
     public int getStorage() {
         return this.storage;
+    }
+
+    @Override
+    public String toString() {
+        return "Computer{" +
+                "name='" + name + '\'' +
+                ", IP='" + IP + '\'' +
+                ", storage=" + storage +
+                ", location='" + location + '\'' +
+                ", hardwareAddress='" + hardwareAddress + '\'' +
+                ", storage=" + storage +
+                "}\n";
     }
 }
