@@ -19,13 +19,8 @@ public class Main {
         nodesList.add(v6);
 
         Network network = new Network(nodesList);
-        System.out.println(network);
-
-        network.displayIdentifiable();
 
         Solver solver = new Solver(network.getNodeList());
-        solver.getSolution();
-
-        System.out.println("size in MB " + v6.getStorage(StorageUnits.MEGABYTES, v6.getStorage()));
+        solver.getSolution(1, 5);
     }
 }

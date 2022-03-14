@@ -52,38 +52,24 @@ public class Solver {
         double min = Double.MAX_VALUE;
         int min_index = 0;
 
-        for (int v = 0; v < nodeList.size(); v++)
-            if (!sptSet[v] && dist[v] <= min) {
-                min = dist[v];
-                min_index = v;
+        for (int index = 0; index < nodeList.size(); index++)
+            if (!sptSet[index] && dist[index] <= min) {
+                min = dist[index];
+                min_index = index;
             }
 
         return min_index;
     }
 
-    private void printSolution(double[] dist, int src)
-    {
-        System.out.println("Distance from node " + src + "\tto vertex:");
-
-        for (int i = 0; i < nodeList.size(); i++)
-            if(nodeList.get(i) instanceof Identifiable)
-                if(dist[i] == Double.MAX_VALUE)
-                    System.out.println("inf" + " \t " + i);
-                else
-                    System.out.println(dist[i] + " \t " + i);
-
-        System.out.println("");
-    }
-
-    private void dijkstra(double[][] costMatrix, int src)
+    private void dijkstra(double[][] costMatrix, int src, int dest)
     {
         double[] dist = new double[nodeList.size()];
 
         Boolean[] sptSet = new Boolean[nodeList.size()];
 
-        for (int i = 0; i < nodeList.size(); i++) {
-            dist[i] = Double.MAX_VALUE;
-            sptSet[i] = false;
+        for (int index = 0; index < nodeList.size(); index++) {
+            dist[index] = Double.MAX_VALUE;
+            sptSet[index] = false;
         }
 
         dist[src] = 0;
@@ -98,17 +84,15 @@ public class Solver {
                     dist[v] = Math.log(dist[u]) + costMatrix[u][v];
         }
 
-        printSolution(dist, src);
+        System.out.println(costMatrix[src][dest]);
     }
 
 
-    public void getSolution()
+    public void getSolution(int index1, int index2)
     {
-        for(int index = 0 ; index < nodeList.size() ; index ++)
-        {
-            if(nodeList.get(index) instanceof Identifiable) //the start node must be identifiable
-                dijkstra(costMatrix, index);
-        }
+
+        if(nodeList.get(index1) instanceof Identifiable) //the start node must be identifiable
+            dijkstra(costMatrix, index1, index2);
     }
 
 }
