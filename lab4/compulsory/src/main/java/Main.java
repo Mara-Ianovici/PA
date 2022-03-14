@@ -34,6 +34,7 @@ public class Main {
             return -1;
         });
 
-        System.out.println(streetList);
+        for(Street street : streetList)
+            System.out.println(street);
     }
 }

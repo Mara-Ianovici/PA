@@ -22,6 +22,6 @@ public class Street {
                 "name='" + name + '\'' +
                 ", length=" + length +
                 ", intersections=" + Arrays.toString(intersection) +
-                "}\n";
+                "}";
     }
 }
