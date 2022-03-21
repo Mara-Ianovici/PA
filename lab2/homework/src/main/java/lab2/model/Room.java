@@ -22,14 +22,6 @@ public abstract class Room {
         return this.capacity;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setCapacity(int capacity) {
-        this.capacity = capacity;
-    }
-
     /**
      * This operator is comparing 2 instances of the class <code>lab2.model.Room</code> by the name.
      * The name is an unique identifier for a <code>room</code>, so no two rooms with

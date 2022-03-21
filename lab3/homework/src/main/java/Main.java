@@ -27,6 +27,6 @@ public class Main {
         Solver solver = new Solver(network.getNodeList());
         solver.getSolution();
 
-//        System.out.println("size in MB " + v6.getStorage(StorageUnits.MEGABYTES, v6.getStorage()));
+        System.out.println("size in MB " + v6.getStorage(StorageUnits.MEGABYTES, v6.getStorage()));
     }
 }
