@@ -1,5 +1,7 @@
+import java.io.IOException;
+
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         Catalog myCatalog = new Catalog();
 
         Item i1 = new Book("knuth67", "The Art of Computer Programming", "d:/books/programming/tacp.ps", 1967, "Donald E. Knuth");
@@ -7,7 +9,14 @@ public class Main {
 
         myCatalog.addItem(i1);
         myCatalog.addItem(i2);
+//        myCatalog.addItem(i1);
 
-        System.out.println(myCatalog);
+//        myCatalog.save();
+
+        Catalog altCatalog = new Catalog();
+//        altCatalog.load("target/out.json");
+
+//        System.out.println(myCatalog);
+        System.out.println(altCatalog);
     }
 }
