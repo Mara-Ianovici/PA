@@ -14,13 +14,10 @@ public class Catalog {
 
     public void addItem(Item itemToBeAdded) {
 
-        for(var item : itemList)
+        if(itemList.contains(itemToBeAdded))
         {
-            if(itemList.contains(itemToBeAdded))
-            {
-                System.out.println("The item is already in the list and can't be added");
-                return;
-            }
+            System.out.println("The item is already in the list and can't be added");
+            return;
         }
         itemList.add(itemToBeAdded);
     }
