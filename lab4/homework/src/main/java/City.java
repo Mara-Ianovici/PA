@@ -71,7 +71,7 @@ public class City {
         graph.setEdge(edge);
 
         if(problemNumber == 0)
-            graph.KruskalMST();
+            graph.kruskalMST();
         else
             graph.getHamiltonianCircle(8);
     }

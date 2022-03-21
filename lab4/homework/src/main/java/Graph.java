@@ -41,30 +41,31 @@ class Graph {
         return subsets[i].parent;
     }
 
-    private void Union(Subset[] subsets, int x, int y) {
-        int xroot = find(subsets, x);
-        int yroot = find(subsets, y);
+    /**
+     * Function used for the union of 2 vertex subset.
+     * @param subsets An array of subsets.
+     * @param vertex1 The first vertex.
+     * @param vertex2 The second vertex.
+     */
+    private void union(Subset[] subsets, int vertex1, int vertex2) {
+        int xRoot = find(subsets, vertex1);
+        int yRoot = find(subsets, vertex2);
 
-        // Attach smaller rank tree under root
-        // of high rank tree (Union by Rank)
-        if (subsets[xroot].rank < subsets[yroot].rank)
-            subsets[xroot].parent = yroot;
+        if (subsets[xRoot].rank < subsets[yRoot].rank)
+            subsets[xRoot].parent = yRoot;
 
-        else if (subsets[xroot].rank > subsets[yroot].rank)
-            subsets[yroot].parent = xroot;
-
-            // If ranks are same, then make one as
-            // root and increment its rank by one
+        else if (subsets[xRoot].rank > subsets[yRoot].rank)
+            subsets[yRoot].parent = xRoot;
         else {
-            subsets[yroot].parent = xroot;
-            subsets[xroot].rank++;
+            subsets[yRoot].parent = xRoot;
+            subsets[xRoot].rank++;
         }
     }
 
     /**
      * Constructs MST using Kruskal's algorithm.
      */
-    public Edge[] KruskalMST() {
+    public Edge[] kruskalMST() {
         Edge[] result = new Edge[vertexNr];
 
         int indexResult = 0;
@@ -92,7 +93,7 @@ class Graph {
             int vertex2 = find(subsets, next_edge.getDest());
             if (vertex1 != vertex2) {
                 result[indexResult++] = next_edge;
-                Union(subsets, vertex1, vertex2);
+                union(subsets, vertex1, vertex2);
             }
         }
 
@@ -140,7 +141,7 @@ class Graph {
      */
     public void getHamiltonianCircle(int startVertex)
     {
-        Edge[] edgesKruskal = KruskalMST();
+        Edge[] edgesKruskal = kruskalMST();
         setAdjLinkedList(edgesKruskal);
         dfs(startVertex);
     }

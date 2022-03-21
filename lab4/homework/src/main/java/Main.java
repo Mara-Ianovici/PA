@@ -36,6 +36,7 @@ public class Main {
         City city = new City(intersectionSet, streetList);
 
         List<Street> streetsCustom = city.getCustomStreetList(1);
-        city.solveProblem(0);
+
+        city.solveProblem(1);
     }
 }
