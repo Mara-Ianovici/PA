@@ -5,8 +5,8 @@ import commands.*;
 import model.main.Article;
 import model.main.Book;
 import model.main.Catalog;
+import problem.Solver;
 import utils.Utils;
-
 
 public class Main {
     public static void main(String[] args) throws Exception {
@@ -21,6 +21,6 @@ public class Main {
 
         System.out.println(catalog);
 
-        Utils.solver(catalog);
+        Solver.solver(catalog);
     }
 }
