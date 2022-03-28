@@ -1,0 +1,20 @@
+{
+  "name" : "catalog1",
+  "itemList" : [ {
+    "type" : "book",
+    "identifier" : "knuth68",
+    "title" : "The Art of Computer Programming",
+    "location" : "C://Windows//notepad.exe",
+    "year" : 1967,
+    "author" : "Donald E. Knuth",
+    "type" : "BOOK"
+  }, {
+    "type" : "book",
+    "identifier" : "knuth46",
+    "title" : "The Art of Computer Programming",
+    "location" : "C://Windows//notepad.exe",
+    "year" : 1967,
+    "author" : "Donald E. Knuth",
+    "type" : "BOOK"
+  } ]
+}

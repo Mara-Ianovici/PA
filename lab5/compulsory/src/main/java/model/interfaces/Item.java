@@ -1,4 +1,25 @@
-public abstract class Item {
+package model.interfaces;
+
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import model.main.Article;
+import model.main.Book;
+import model.main.Other;
+import model.main.ItemType;
+
+import java.io.Serializable;
+
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME,
+        property = "type")
+@JsonSubTypes({
+        @JsonSubTypes.Type(value = Book.class, name = "book"),
+        @JsonSubTypes.Type(value = Article.class, name = "article"),
+        @JsonSubTypes.Type(value = Other.class, name = "other"),
+})
+
+public abstract class Item implements Serializable {
     protected String identifier;
     protected String title;
     protected String location;
@@ -6,7 +27,9 @@ public abstract class Item {
     protected String author;
     protected ItemType type;
 
-    protected Item(String identifier, String title, String location, Integer year, String author, ItemType type) {
+    @JsonCreator
+    public Item(@JsonProperty("id") String identifier, @JsonProperty("title") String title, @JsonProperty("location") String location,
+                @JsonProperty("year") Integer year, @JsonProperty("author") String author, @JsonProperty("type") ItemType type) {
         this.identifier = identifier;
         this.title = title;
         this.location = location;
