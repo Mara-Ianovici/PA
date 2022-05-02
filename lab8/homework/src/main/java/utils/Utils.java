@@ -2,8 +2,10 @@ package utils;
 
 import database.EntityDAO;
 import models.City;
+import models.Entity;
 
 import java.sql.SQLException;
+import java.util.List;
 
 public class Utils {
     public static double calculateDistance(double latitude1, double latitude2, double longitude1, double longitude2) {
@@ -23,21 +25,14 @@ public class Utils {
         return (answer * value);
     }
 
-    public static double getCitiesDistance(String cityName1, String cityName2) {
+    public static void printCitiesDistance(int index1, int index2){
         EntityDAO entityDAO = new EntityDAO();
+        List<Entity> cityList= entityDAO.findAll("city");
+        City city1 = (City)cityList.get(0);
+        City city2 = (City)cityList.get(1);
 
-        try {
-            City city1 = (City) entityDAO.findByName(cityName1, "city");
-            City city2 = (City) entityDAO.findByName(cityName2, "city");
+        double distance = calculateDistance(city1.getLatitude(), city2.getLatitude(), city1.getLongitude(), city2.getLongitude());
 
-            if (city1 == null || city2 == null)
-                return -1.0;
-
-            return calculateDistance(city1.getLatitude(), city2.getLatitude(), city1.getLongitude(), city2.getLongitude());
-        } catch (SQLException exception) {
-            System.out.println(exception.getMessage());
-        }
-
-        return -1.0;
+        System.out.println("The distance between " + city1.getName() + " and " + city2.getName() + " is " + distance);
     }
 }

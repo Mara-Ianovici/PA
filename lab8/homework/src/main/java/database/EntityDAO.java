@@ -7,6 +7,8 @@ import models.Country;
 import models.Entity;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class EntityDAO {
 
@@ -116,4 +118,37 @@ public class EntityDAO {
         return null;
     }
 
-}
+    public List<Entity> findAll(String tableName) {
+        Connection connection = Database.getConnection();
+        List<Entity> entityList = new ArrayList<>();
+
+        switch (tableName) {
+            case "country":
+                try (Statement stmt = connection.createStatement();
+                     ResultSet resultSet = stmt.executeQuery("select name, code, continent_name from country")) {
+
+                    while (resultSet.next())
+                        entityList.add(new Country(resultSet.getString(1), resultSet.getString(2), resultSet.getString(3)));
+                } catch (SQLException exception) {
+                    exception.printStackTrace();
+                }
+            case "continent":
+                try (Statement stmt = connection.createStatement();
+                     ResultSet resultSet = stmt.executeQuery("select name from continents")) {
+                    while (resultSet.next()) entityList.add(new Continent(resultSet.getString(1)));
+                } catch (SQLException exception) {
+                    exception.printStackTrace();
+                }
+            case "city":
+                try (Statement stmt = connection.createStatement();
+                     ResultSet resultSet = stmt.executeQuery("select name, country_name, latitude, longitude from cities")) {
+                    while (resultSet.next())
+                        entityList.add(new City(resultSet.getString(1), resultSet.getString(2), resultSet.getDouble(3), resultSet.getDouble(4)));
+                } catch (SQLException exception) {
+                    exception.printStackTrace();
+                }
+
+        }
+        return entityList;
+    }
+ }
