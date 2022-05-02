@@ -1,11 +1,20 @@
+package utils;
+
 import com.opencsv.CSVReader;
+import database.Database;
+import database.EntityDAO;
+import models.City;
+import models.Continent;
+import models.Country;
 
 import java.io.FileReader;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * Creates the DB.
+ */
 public class ExtractTool {
     String csvPath;
 
@@ -13,6 +22,9 @@ public class ExtractTool {
         this.csvPath = csvPath;
     }
 
+    /**
+     * Reads from the csv and adds the information to the DB.
+     */
     public void read() {
         try {
             CSVReader reader = new CSVReader(new FileReader(csvPath));
@@ -33,29 +45,38 @@ public class ExtractTool {
         }
     }
 
+    /**
+     * Verifies if the continent is already in the database.
+     * If the continent doesn't exist it is added.
+     * @param name The name of the continent to te added.
+     */
     private void addContinent(String name) throws SQLException {
         Continent continent = new Continent(name);
         EntityDAO entityDAO = new EntityDAO();
 
-        Integer isFound = entityDAO.findByName(continent);
-
-        if(isFound == null)//if it was not added before
+        if(entityDAO.findByName(name, "continent") == null)//if it was not added before
             entityDAO.create(continent);
     }
 
+    /**
+     * Verifies if the country is already in the database.
+     * If the country doesn't exist it is added.
+     */
     private void addCountry(String name, String code, String continentName) throws SQLException {
         Country country = new Country(name, code, continentName);
         EntityDAO entityDAO = new EntityDAO();
 
-        if(entityDAO.findByName(country) == null) //if it was not added before
+        if(entityDAO.findByName(name, "country") == null) //if it was not added before
             entityDAO.create(country);
     }
 
-    private void addCity(String countryName, String name, String latitude, String longitude) throws SQLException {
+    /**
+     * It adds the city in the DB.
+     */
+    private void addCity(String countryName, String name, String latitude, String longitude){
         City city = new City(name, countryName, Float.parseFloat(latitude), Float.parseFloat(longitude));
         EntityDAO entityDAO = new EntityDAO();
 
-        if(entityDAO.findByName(city) == null)
-            entityDAO.create(city);
+        entityDAO.create(city);
     }
 }

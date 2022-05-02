@@ -1,6 +1,8 @@
+package models;
+
 import java.sql.*;
 
-public class Continent extends Entity{
+public class Continent extends Entity {
     public Continent(String name) {
         super(name);
     }

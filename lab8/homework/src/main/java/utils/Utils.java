@@ -1,3 +1,10 @@
+package utils;
+
+import database.EntityDAO;
+import models.City;
+
+import java.sql.SQLException;
+
 public class Utils {
     public static double calculateDistance(double latitude1, double latitude2, double longitude1, double longitude2) {
         longitude1 = Math.toRadians(longitude1);
@@ -11,18 +18,26 @@ public class Utils {
                 * Math.pow(Math.sin(doubleLongitude / 2), 2);
 
         answer = 2 * Math.asin(Math.sqrt(answer));
-
         double value = 6371;
 
         return (answer * value);
     }
 
-//    public static double getCitiesDistance(String cityName1, String cityName2){
-//        City cityDAO = new City();
-//
-//        if(cityDAO.findByName(cityName1) == null || cityDAO.findByName(cityName2) == null)
-//            return -1.0;
-//
-//        return calculateDistance(cityDAO.getLatitude(cityName1), cityDAO.getLatitude(cityName2), cityDAO.getLongitude(cityName1), cityDAO.getLongitude(cityName2));
-//    }
+    public static double getCitiesDistance(String cityName1, String cityName2) {
+        EntityDAO entityDAO = new EntityDAO();
+
+        try {
+            City city1 = (City) entityDAO.findByName(cityName1, "city");
+            City city2 = (City) entityDAO.findByName(cityName2, "city");
+
+            if (city1 == null || city2 == null)
+                return -1.0;
+
+            return calculateDistance(city1.getLatitude(), city2.getLatitude(), city1.getLongitude(), city2.getLongitude());
+        } catch (SQLException exception) {
+            System.out.println(exception.getMessage());
+        }
+
+        return -1.0;
+    }
 }

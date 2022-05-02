@@ -1,7 +1,13 @@
+package database;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+/**
+ * A singleton class to model the database.
+ * It connects the model tp the database using the password and the username.
+ */
 public class Database {
     private static final String URL = "jdbc:postgresql://localhost:5432/postgres";
     private static final String USER = "postgres";
@@ -22,11 +28,9 @@ public class Database {
             connection = DriverManager.getConnection(URL, USER, PASSWORD);
             connection.setAutoCommit(false);
 
-        } catch (SQLException exception) {
-            System.err.println(exception.getMessage());
-
-        } catch (ClassNotFoundException exception) {
+        } catch (SQLException | ClassNotFoundException exception) {
             exception.printStackTrace();
+
         }
     }
     public static void closeConnection() throws SQLException {
