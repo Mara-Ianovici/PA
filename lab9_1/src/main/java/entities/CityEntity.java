@@ -3,10 +3,9 @@ package entities;
 import javax.persistence.*;
 import java.util.Objects;
 
+@NamedQuery(name="CityEntity.findByName", query = "SELECT e from CityEntity e WHERE e.name =: name")
 @Entity
 @Table(name = "city", schema = "public", catalog = "postgres")
-@NamedQuery(name="CityEntity.findById", query = "SELECT e from CityEntity e WHERE e.id =: id")
-@NamedQuery(name="CityEntity.findByName", query = "SELECT e from CityEntity e WHERE e.name =: name")
 public class CityEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
