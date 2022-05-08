@@ -18,13 +18,13 @@ public class CityRepository {
 
     public CityEntity findById(Integer id) {
         EntityManager entityManager = entityManagerFactory.createEntityManager();
-        return (CityEntity) entityManager.createQuery("select c from CityEntity c where c.id =:id").setParameter("id", id).getResultList();
+        return (CityEntity) entityManager.createQuery("select c from CityEntity c where c.id =:id").setParameter("id", id).getResultList().get(0);
     }
 
     public CityEntity findByName(String name) {
         EntityManager entityManager = entityManagerFactory.createEntityManager();
 
-        return (CityEntity) entityManager.createNamedQuery("CityEntity.findByName").setParameter("name", name).getResultList();
+        return (CityEntity) entityManager.createNamedQuery("CityEntity.findByName").setParameter("name", name).getResultList().get(0);
     }
 
 }
