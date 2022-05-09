@@ -16,6 +16,6 @@ public class TimeCalculator {
     private static void getFinalTime(Object object){
         long endTime = System.nanoTime();
 
-        System.out.println(endTime - startTime);
+        System.out.println("The time of the insertion is:" + (endTime - startTime));
     }
 }

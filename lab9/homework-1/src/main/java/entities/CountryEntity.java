@@ -3,6 +3,7 @@ package entities;
 import org.dom4j.tree.AbstractEntity;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @NamedQuery(name="CountryEntity.findByName", query = "SELECT e from CountryEntity e WHERE e.name =: name")
@@ -76,5 +77,16 @@ public class CountryEntity extends AbstractEntity {
         result = 31 * result + (code != null ? code.hashCode() : 0);
         result = 31 * result + idContinent;
         return result;
+    }
+
+    @OneToMany
+    private List<CityEntity> cityEntities;
+
+    public List<CityEntity> getOneToMany() {
+        return cityEntities;
+    }
+
+    public void setOneToMany(List<CityEntity> oneToMany) {
+        this.cityEntities = oneToMany;
     }
 }
