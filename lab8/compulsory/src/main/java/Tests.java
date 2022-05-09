@@ -10,8 +10,9 @@ public class Tests {
             CountryDAO countries = new CountryDAO();
             int europeId = continents.findByName("Europe");
 
-//            countries.create(1, "Romania", europeId);
-//            countries.create(2, "Ukraine", europeId);
+            countries.create("Romania", europeId);
+            countries.create("Ukraine", europeId);
+            countries.create("Moldova", europeId);
 
             Database.getConnection().commit();
             System.out.println(countries.getCountriesFromContinent(europeId));

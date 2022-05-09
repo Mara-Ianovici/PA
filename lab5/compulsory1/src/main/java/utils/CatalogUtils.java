@@ -15,7 +15,7 @@ public class CatalogUtils {
         mapper.configure(SerializationFeature.INDENT_OUTPUT, true);
 
         mapper.writeValue(new File(fullPath), catalog);
-        System.out.printf("Catalog data is saved in " + fullPath + '\n');
+        System.out.println("Catalog data is saved in " + fullPath + '\n');
     }
 
     public static Catalog load(String path) throws NullPointerException{

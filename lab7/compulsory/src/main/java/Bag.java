@@ -9,17 +9,28 @@ public class Bag {
         addTiles();
     }
 
-    public void addTiles(){
-        for (char letter = 'a'; letter <= 'z'; letter++) {
-            {
-                int randomValue = ThreadLocalRandom.current().nextInt(1, 11);
-                Tile tile = new Tile(letter, randomValue);
-
-                for (int index = 0; index < 10; index++) {
-                    tileList.add(tile);
-                }
-            }
+    private void addToBag(char characterToAdd, int numberOfTiles, int numberOfPoints) {
+        for (int counter = 0; counter < numberOfTiles; counter++) {
+            this.tileList.add(new Tile(characterToAdd, numberOfPoints));
         }
+    }
+
+    public void addTiles() {
+        for (char character = 'A'; character <= 'Z'; character++)
+            switch (character) {
+                case 'A', 'O' -> addToBag(character, 8, 1);
+                case 'B', 'C', 'M', 'P' -> addToBag(character, 2, 3);
+                case 'D' -> addToBag(character, 4, 2);
+                case 'E' -> addToBag(character, 12, 1);
+                case 'F', 'H', 'V', 'W', 'Y' -> addToBag(character, 2, 4);
+                case 'G' -> addToBag(character, 3, 2);
+                case 'I' -> addToBag(character, 9, 1);
+                case 'J', 'X' -> addToBag(character, 1, 8);
+                case 'K' -> addToBag(character, 1, 5);
+                case 'L', 'S', 'U' -> addToBag(character, 4, 1);
+                case 'N', 'R', 'T' -> addToBag(character, 6, 1);
+                case 'Q', 'Z' -> addToBag(character, 1, 10);
+            }
     }
 
     public synchronized List<Tile> extractTiles(int howMany) {

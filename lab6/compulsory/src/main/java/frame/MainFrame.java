@@ -31,4 +31,28 @@ public class MainFrame extends JFrame {
 
         pack();
     }
+
+    public ConfigurationPanel getConfigPanel() {
+        return configPanel;
+    }
+
+    public ControlPanel getControlPanel() {
+        return controlPanel;
+    }
+
+    public DrawingPanel getCanvas() {
+        return canvas;
+    }
+
+    public void setConfigPanel(ConfigurationPanel configPanel) {
+        this.configPanel = configPanel;
+    }
+
+    public void setControlPanel(ControlPanel controlPanel) {
+        this.controlPanel = controlPanel;
+    }
+
+    public void setCanvas(DrawingPanel canvas) {
+        this.canvas = canvas;
+    }
 }

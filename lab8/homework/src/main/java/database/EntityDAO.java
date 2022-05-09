@@ -1,6 +1,5 @@
 package database;
 
-import database.Database;
 import models.City;
 import models.Continent;
 import models.Country;

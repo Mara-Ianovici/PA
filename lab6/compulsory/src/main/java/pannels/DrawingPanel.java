@@ -7,7 +7,7 @@ import java.awt.*;
 
 public class DrawingPanel extends JPanel {
     private final MainFrame frame;
-    int rows, cols;
+    private int rows, cols;
     int canvasWidth = 400, canvasHeight = 400;
     int boardWidth, boardHeight;
     int cellWidth, cellHeight;
@@ -57,5 +57,13 @@ public class DrawingPanel extends JPanel {
                 graphics2D.drawOval(height - stoneSize / 2, width - stoneSize / 2, stoneSize, stoneSize);
             }
         }
+    }
+
+    public void setRows(int rows) {
+        this.rows = rows;
+    }
+
+    public void setCols(int cols) {
+        this.cols = cols;
     }
 }

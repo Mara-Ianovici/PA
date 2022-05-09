@@ -1,6 +1,6 @@
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         Game game = new Game();
         game.addPlayer(new Player("Player 1"));
         game.addPlayer(new Player("Player 2"));

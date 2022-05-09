@@ -3,6 +3,7 @@ package pannels;
 import frame.MainFrame;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 
 public class ConfigurationPanel extends JPanel {
@@ -67,7 +68,15 @@ public class ConfigurationPanel extends JPanel {
     }
 
     private void createGame(ActionEvent actionEvent) {
-        System.out.println("Game started.");
+//        DrawingPanel drawingPanel = new DrawingPanel(frame);
+//
+//        frame.setCanvas(drawingPanel);
+//        frame.setVisible(true);
+//        System.out.println(frame.configPanel.getHeightSpinner().getValue());
+//        System.out.println(frame.configPanel.getWidthSpinner().getValue());
+
+        frame.getCanvas().init((int)frame.configPanel.getHeightSpinner().getValue(), (int)frame.configPanel.getWidthSpinner().getValue());
+//        frame.getCanvas().paintComponent((Graphics)this);
     }
 }
 

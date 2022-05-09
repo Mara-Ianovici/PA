@@ -1,7 +1,5 @@
 package models;
 
-import java.sql.*;
-
 public class Country extends Entity {
     private final String code, continentName;
 
